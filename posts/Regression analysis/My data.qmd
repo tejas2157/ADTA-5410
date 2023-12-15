@@ -1,0 +1,215 @@
+---
+title: "Stepwise Regression"
+author: "Tejaskumar Patel"
+date: "2023-12-14"
+output: 
+  quarto::html_document:
+    theme: "yeti"
+    df_print: kable
+    highlight: pygments
+    code_folding: show
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# Slide 1: Plan for today
+
+-   Data Splitting
+
+-   Choosing best model among different alternatives
+
+-   Forward/Backward Selection methods
+
+-   Best Subset model
+
+# Slide 2: Dataset from ISLR2
+
+-   Let's first load a dataset from the `ISLR2` package.
+
+-   Check the data structure and dimension of the data
+
+-   How many
+
+```{r}
+library(ISLR2)
+library(leaps)
+
+df<-ISLR2::Auto
+
+
+```
+
+# Slide 3: Data split
+
+We will explore the variables in the dataset to choose the best
+predictors.
+
+```{r}
+
+shuffleid = sample(nrow(df), 0.2 * nrow(df))
+testData = df[shuffleid, ]
+trainData = df[-shuffleid, ]
+```
+
+# Slide 4: Single Variable Models
+
+-   Run a linear model with only one predictor to model `mpg`
+
+-   Which predictor gives the highest possible adjusted R square value
+
+```{r}
+
+
+
+get_adj_r_squared_simple <- function(data, dependent_var, predictor_var) {
+  formula_string <- paste(dependent_var, "~", predictor_var)
+  model <- lm(formula_string, data = data)
+  adj_r_squared <- summary(model)$adj.r.squared
+  return(adj_r_squared)
+}
+
+
+
+
+
+```
+
+# Slide 5: Forward Selection
+
+-   Forward selection starts with an empty model
+
+-   Iteratively adds predictors to improve the model
+
+-   Stops when addition of predictors does not significantly improve the
+    model
+
+# 
+
+Slide 6: Forward Selection Algorithm
+
+-   Start with a null model (no predictors)
+
+-   Fit p simple linear models and add the variable with the smallest
+    RSS
+
+-   Continue adding variables, one at a time, that give the smallest RSS
+
+-   Stop when no variables improve the model beyond a threshold
+
+-   Criterion: cross validated prediction error, AIC, BIC, or adjusted R
+    square
+
+# Slide 7: Forward Selection Practice
+
+Use the step function in stats package and run a forward stepwise
+regression on **trainingset** and name your model **model_forward**. If
+we use AIC information criteria, which variables are selected based on
+model_forward?
+
+```{r}
+min_model <- lm(mpg~ 1, data=trainData)
+#largest model
+myfullmodel<-lm(mpg~.-name , data=trainData)
+
+# Run the forward stepwise regression. 
+model_forward <-
+  step(min_model,direction="forward", scope=formula(myfullmodel),
+  trace = 1 , criterion = "AIC")
+
+model_forward$coefficients
+```
+
+## 
+
+# Slide 8: Backward Selection Practice
+
+-   Starts with a full model with all predictors
+
+-   Iteratively removes predictors to simplify the model
+
+-   Stops when removal of predictors significantly worsens the model
+
+# 
+
+Slide 9: Backward Selection Practice
+
+```{r}
+min_model <- lm(mpg~ 1, data=trainData)
+#largest model
+myfullmodel<-lm(mpg~.-name , data=trainData)
+
+n=nrow(trainData)
+
+# Run the forward stepwise regression. 
+model_backward <-
+  step(myfullmodel,direction="backward", scope=formula(myfullmodel),
+  trace = 1, criterion = "AIC" )
+
+model_backward$coefficients
+```
+
+## 
+
+# Slide 10: Best Subset model
+
+-   Method that considers all possible subsets of predictors
+
+-   Chooses the model that gives the best performance based on a
+    criterion (e.g., AIC, BIC, Adjusted R2)
+
+# Slide 11: leaps package
+
+-   Use leaps function in the leaps library in R to compare all possible
+    models and decide on the best model by using Adjusted R-squared
+    criteria
+
+-   The leaps function in R can help you to construct a table indicating
+    the variables included in the best model of each size (p=1,p=2,...,
+    p=16) and the corresponding Adjusted R-squared value.
+
+# Slide 12: best subset in practice
+
+\
+
+```{r}
+
+col_names = names(trainData)[-c(1, 9)]
+
+
+
+outadjr2 = leaps(trainData[,-c(1, 9)], trainData$mpg, method = "adjr2", nbest=1, names = col_names)
+
+# Get the index of the best model
+bestmodelR2 = which(outadjr2$adjr2==max(outadjr2$adjr2))
+# Extract the coefficients of the best model
+best.R2 = cbind(as.matrix(outadjr2$which),outadjr2$adjr2)[bestmodelR2,]
+# Set the names of the best row 
+names(best.R2) = c(names(trainData[,-c(1, 9)]),"adjr2")
+# Show the best row with the selected predictors
+best.R2
+```
+
+# Slide 13: Prediction on a new dataset
+
+```{r}
+forward_fitted<- predict(model_forward, newdata=testData)
+
+RMSE_forward<-sqrt(mean((testData$mpg-forward_fitted)^2))
+
+backward_fitted<- predict(model_backward, newdata=testData)
+
+RMSE_backward<-sqrt(mean((testData$mpg-backward_fitted)^2))
+
+
+
+library(Metrics)
+rmse(testData$mpg, forward_fitted)
+```
+
+# Slide 14: Practice
+
+-   Predict MSPE on testData based on the best model selected by Best
+    subset model
+
+# 

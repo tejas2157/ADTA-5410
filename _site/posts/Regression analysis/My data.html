@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tejaskumar Patel">
+<meta name="dcterms.date" content="2023-12-14">
+
+<title>Welcome to my blog - Stepwise Regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Welcome to my blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">Tejaskumar Patel</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Stepwise Regression</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tejaskumar Patel </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 14, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="slide-1-plan-for-today" class="level1">
+<h1>Slide 1: Plan for today</h1>
+<ul>
+<li><p>Data Splitting</p></li>
+<li><p>Choosing best model among different alternatives</p></li>
+<li><p>Forward/Backward Selection methods</p></li>
+<li><p>Best Subset model</p></li>
+</ul>
+</section>
+<section id="slide-2-dataset-from-islr2" class="level1">
+<h1>Slide 2: Dataset from ISLR2</h1>
+<ul>
+<li><p>Let’s first load a dataset from the <code>ISLR2</code> package.</p></li>
+<li><p>Check the data structure and dimension of the data</p></li>
+<li><p>How many</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span>ISLR2<span class="sc">::</span>Auto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="slide-3-data-split" class="level1">
+<h1>Slide 3: Data split</h1>
+<p>We will explore the variables in the dataset to choose the best predictors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>shuffleid <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(df), <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(df))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>testData <span class="ot">=</span> df[shuffleid, ]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>trainData <span class="ot">=</span> df[<span class="sc">-</span>shuffleid, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="slide-4-single-variable-models" class="level1">
+<h1>Slide 4: Single Variable Models</h1>
+<ul>
+<li><p>Run a linear model with only one predictor to model <code>mpg</code></p></li>
+<li><p>Which predictor gives the highest possible adjusted R square value</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>get_adj_r_squared_simple <span class="ot">&lt;-</span> <span class="cf">function</span>(data, dependent_var, predictor_var) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  formula_string <span class="ot">&lt;-</span> <span class="fu">paste</span>(dependent_var, <span class="st">"~"</span>, predictor_var)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula_string, <span class="at">data =</span> data)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  adj_r_squared <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(adj_r_squared)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="slide-5-forward-selection" class="level1">
+<h1>Slide 5: Forward Selection</h1>
+<ul>
+<li><p>Forward selection starts with an empty model</p></li>
+<li><p>Iteratively adds predictors to improve the model</p></li>
+<li><p>Stops when addition of predictors does not significantly improve the model</p></li>
+</ul>
+</section>
+<section id="section" class="level1">
+<h1></h1>
+<p>Slide 6: Forward Selection Algorithm</p>
+<ul>
+<li><p>Start with a null model (no predictors)</p></li>
+<li><p>Fit p simple linear models and add the variable with the smallest RSS</p></li>
+<li><p>Continue adding variables, one at a time, that give the smallest RSS</p></li>
+<li><p>Stop when no variables improve the model beyond a threshold</p></li>
+<li><p>Criterion: cross validated prediction error, AIC, BIC, or adjusted R square</p></li>
+</ul>
+</section>
+<section id="slide-7-forward-selection-practice" class="level1">
+<h1>Slide 7: Forward Selection Practice</h1>
+<p>Use the step function in stats package and run a forward stepwise regression on <strong>trainingset</strong> and name your model <strong>model_forward</strong>. If we use AIC information criteria, which variables are selected based on model_forward?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>min_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>trainData)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#largest model</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>myfullmodel<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>.<span class="sc">-</span>name , <span class="at">data=</span>trainData)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the forward stepwise regression. </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>model_forward <span class="ot">&lt;-</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step</span>(min_model,<span class="at">direction=</span><span class="st">"forward"</span>, <span class="at">scope=</span><span class="fu">formula</span>(myfullmodel),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace =</span> <span class="dv">1</span> , <span class="at">criterion =</span> <span class="st">"AIC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=1284.61
+mpg ~ 1
+
+               Df Sum of Sq     RSS     AIC
++ weight        1   12680.0  5979.8  929.28
++ displacement  1   11881.0  6778.8  968.66
++ cylinders     1   11226.7  7433.1  997.59
++ horsepower    1   11046.7  7613.2 1005.11
++ year          1    6284.3 12375.5 1157.66
++ origin        1    5362.4 13297.4 1180.22
++ acceleration  1    3291.4 15368.4 1225.67
+&lt;none&gt;                      18659.8 1284.61
+
+Step:  AIC=929.28
+mpg ~ weight
+
+               Df Sum of Sq    RSS    AIC
++ year          1   2340.06 3639.8 775.39
++ horsepower    1    278.55 5701.3 916.30
++ origin        1    177.29 5802.5 921.83
++ displacement  1    144.97 5834.8 923.57
++ cylinders     1    120.56 5859.3 924.89
++ acceleration  1     97.63 5882.2 926.11
+&lt;none&gt;                      5979.8 929.28
+
+Step:  AIC=775.39
+mpg ~ weight + year
+
+               Df Sum of Sq    RSS    AIC
++ origin        1   145.162 3494.6 764.61
+&lt;none&gt;                      3639.8 775.39
++ cylinders     1     4.842 3634.9 776.97
++ horsepower    1     4.159 3635.6 777.03
++ displacement  1     1.666 3638.1 777.24
++ acceleration  1     1.177 3638.6 777.29
+
+Step:  AIC=764.61
+mpg ~ weight + year + origin
+
+               Df Sum of Sq    RSS    AIC
+&lt;none&gt;                      3494.6 764.61
++ displacement  1   17.9854 3476.6 764.99
++ horsepower    1   12.8312 3481.8 765.45
++ acceleration  1    3.1855 3491.4 766.32
++ cylinders     1    0.7779 3493.8 766.54</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_forward<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  (Intercept)        weight          year        origin 
+-17.152695848  -0.006183903   0.754576716   1.018373278 </code></pre>
+</div>
+</div>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+</section>
+</section>
+<section id="slide-8-backward-selection-practice" class="level1">
+<h1>Slide 8: Backward Selection Practice</h1>
+<ul>
+<li><p>Starts with a full model with all predictors</p></li>
+<li><p>Iteratively removes predictors to simplify the model</p></li>
+<li><p>Stops when removal of predictors significantly worsens the model</p></li>
+</ul>
+</section>
+<section id="section-2" class="level1">
+<h1></h1>
+<p>Slide 9: Backward Selection Practice</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>min_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>trainData)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#largest model</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>myfullmodel<span class="ot">&lt;-</span><span class="fu">lm</span>(mpg<span class="sc">~</span>.<span class="sc">-</span>name , <span class="at">data=</span>trainData)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">nrow</span>(trainData)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the forward stepwise regression. </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>model_backward <span class="ot">&lt;-</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step</span>(myfullmodel,<span class="at">direction=</span><span class="st">"backward"</span>, <span class="at">scope=</span><span class="fu">formula</span>(myfullmodel),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">trace =</span> <span class="dv">1</span>, <span class="at">criterion =</span> <span class="st">"AIC"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=762.66
+mpg ~ (cylinders + displacement + horsepower + weight + acceleration + 
+    year + origin + name) - name
+
+               Df Sum of Sq    RSS    AIC
+- acceleration  1      0.70 3386.3 760.73
+&lt;none&gt;                      3385.7 762.66
+- cylinders     1     41.01 3426.7 764.44
+- horsepower    1     43.39 3429.0 764.66
+- displacement  1     94.73 3480.4 769.33
+- origin        1    220.48 3606.1 780.47
+- weight        1    873.92 4259.6 832.76
+- year          1   2015.18 5400.8 907.30
+
+Step:  AIC=760.73
+mpg ~ cylinders + displacement + horsepower + weight + year + 
+    origin
+
+               Df Sum of Sq    RSS    AIC
+&lt;none&gt;                      3386.3 760.73
+- cylinders     1     40.43 3426.8 762.45
+- horsepower    1     61.82 3448.2 764.41
+- displacement  1     95.38 3481.7 767.45
+- origin        1    220.15 3606.5 778.50
+- weight        1   1120.64 4507.0 848.49
+- year          1   2034.92 5421.3 906.49</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_backward<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> (Intercept)    cylinders displacement   horsepower       weight         year 
+-14.56286014  -0.69346581   0.02473438  -0.02938393  -0.00644805   0.75089518 
+      origin 
+  1.35637327 </code></pre>
+</div>
+</div>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+</section>
+</section>
+<section id="slide-10-best-subset-model" class="level1">
+<h1>Slide 10: Best Subset model</h1>
+<ul>
+<li><p>Method that considers all possible subsets of predictors</p></li>
+<li><p>Chooses the model that gives the best performance based on a criterion (e.g., AIC, BIC, Adjusted R2)</p></li>
+</ul>
+</section>
+<section id="slide-11-leaps-package" class="level1">
+<h1>Slide 11: leaps package</h1>
+<ul>
+<li><p>Use leaps function in the leaps library in R to compare all possible models and decide on the best model by using Adjusted R-squared criteria</p></li>
+<li><p>The leaps function in R can help you to construct a table indicating the variables included in the best model of each size (p=1,p=2,…, p=16) and the corresponding Adjusted R-squared value.</p></li>
+</ul>
+</section>
+<section id="slide-12-best-subset-in-practice" class="level1">
+<h1>Slide 12: best subset in practice</h1>
+<p><br>
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>col_names <span class="ot">=</span> <span class="fu">names</span>(trainData)[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>)]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>outadjr2 <span class="ot">=</span> <span class="fu">leaps</span>(trainData[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>)], trainData<span class="sc">$</span>mpg, <span class="at">method =</span> <span class="st">"adjr2"</span>, <span class="at">nbest=</span><span class="dv">1</span>, <span class="at">names =</span> col_names)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the index of the best model</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>bestmodelR2 <span class="ot">=</span> <span class="fu">which</span>(outadjr2<span class="sc">$</span>adjr2<span class="sc">==</span><span class="fu">max</span>(outadjr2<span class="sc">$</span>adjr2))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the coefficients of the best model</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>best.R2 <span class="ot">=</span> <span class="fu">cbind</span>(<span class="fu">as.matrix</span>(outadjr2<span class="sc">$</span>which),outadjr2<span class="sc">$</span>adjr2)[bestmodelR2,]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the names of the best row </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(best.R2) <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">names</span>(trainData[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">9</span>)]),<span class="st">"adjr2"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the best row with the selected predictors</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>best.R2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   cylinders displacement   horsepower       weight acceleration         year 
+   1.0000000    1.0000000    1.0000000    1.0000000    0.0000000    1.0000000 
+      origin        adjr2 
+   1.0000000    0.8149753 </code></pre>
+</div>
+</div>
+</section>
+<section id="slide-13-prediction-on-a-new-dataset" class="level1">
+<h1>Slide 13: Prediction on a new dataset</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>forward_fitted<span class="ot">&lt;-</span> <span class="fu">predict</span>(model_forward, <span class="at">newdata=</span>testData)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>RMSE_forward<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">mean</span>((testData<span class="sc">$</span>mpg<span class="sc">-</span>forward_fitted)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>backward_fitted<span class="ot">&lt;-</span> <span class="fu">predict</span>(model_backward, <span class="at">newdata=</span>testData)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>RMSE_backward<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">mean</span>((testData<span class="sc">$</span>mpg<span class="sc">-</span>backward_fitted)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Metrics)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(testData<span class="sc">$</span>mpg, forward_fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.324726</code></pre>
+</div>
+</div>
+</section>
+<section id="slide-14-practice" class="level1">
+<h1>Slide 14: Practice</h1>
+<ul>
+<li>Predict MSPE on testData based on the best model selected by Best subset model</li>
+</ul>
+</section>
+<section id="section-4" class="level1">
+<h1></h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

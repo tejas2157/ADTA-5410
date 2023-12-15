@@ -1,0 +1,10 @@
+---
+title: "Welcome To My Blog"
+author: "Tejaskumar Patel"
+date: "2023-12-14"
+categories: [R]
+---
+
+Hi! My name is Tejaskumar Patel.
+
+![](thumbnail.jpg)

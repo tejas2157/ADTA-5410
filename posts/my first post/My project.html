@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="TEJASKUMAR PATEL">
+
+<title>ADTA 5410 by Bulut, Week 2 Lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Week 2 Assignment POST_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Week 2 Assignment POST_files/libs/quarto-html/quarto.js"></script>
+<script src="Week 2 Assignment POST_files/libs/quarto-html/popper.min.js"></script>
+<script src="Week 2 Assignment POST_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Week 2 Assignment POST_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Week 2 Assignment POST_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Week 2 Assignment POST_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Week 2 Assignment POST_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Week 2 Assignment POST_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Week 2 Assignment POST_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ADTA 5410 by Bulut, Week 2 Lab</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>TEJASKUMAR PATEL </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="general-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="general-instructions">General Instructions</h2>
+<ol type="1">
+<li><p>You have the option to establish a new folder for this lab assignment and place both this Quarto document and the supplied dataset within it.</p></li>
+<li><p>The initial code snippet installs specific R packages that could prove valuable in addressing certain questions.</p></li>
+<li><p>Unless otherwise specified, you have the freedom to select any R package you prefer to address the questions. You are not constrained to utilizing the packages listed in this Quarto template.</p></li>
+<li><p>Ensure that you include the code responsible for generating each answer, and verify that both your code and its output are visible in your knitted HTML document. You can achieve this by setting <strong><code>echo=TRUE</code></strong> to print your code chunk in the knitted HTML code.</p></li>
+<li><p>Once you’ve completed your work, knit your Quarto document into an HTML document and save it within the folder you established in step 1.</p></li>
+<li><p>Please submit your assignment by uploading both the knitted HTML document and the QMD file to the specified course portal on Canvas prior to the designated due date and time</p></li>
+<li><p>Ensure your Quarto Document is saved with the following naming convention: “<strong>LastName_FirstName_Week2.qmd</strong>” (i.e.&nbsp;Doe_Jane_Week2.qmd) . Students will lose 2 points for not properly naming their file.</p></li>
+<li><p>Please place your code for each task within the specified code section.</p></li>
+<li><p>Ensure that all non-code written responses are placed within the corresponding Task section where the question content is located.</p></li>
+<li><p>You are allowed to seek assistance from ChatGPT exclusively for assistance in writing your code. However, please be cautious as ChatGPT may occasionally provide inaccurate information when it comes to scripting in specific programming languages.</p></li>
+<li><p>Verbal responses must be articulated in your own words. You cannot use ChatGPT for generating or providing verbal responses. All verbal responses should originate from your own understanding and expression.</p></li>
+</ol>
+</section>
+<section id="state-level-census-data" class="level2">
+<h2 class="anchored" data-anchor-id="state-level-census-data">State-level Census data</h2>
+<ul>
+<li>We have state level census data on various socio-economic and demographic factors called <strong>mydata</strong>. The data consists of the following variables:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"Data_RLab2-2.csv"</span>, <span class="at">head=</span>T)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "State"                       "OwnComputer"                
+ [3] "CommutePublicTransport"      "TotalPopulation"            
+ [5] "MedianAge"                   "WithCashAssistanceIncome"   
+ [7] "MeanSocialSecurityIcnome"    "SupplementarySecurityIncome"
+ [9] "WhiteOnly"                   "Latinos"                    
+[11] "Asians"                      "AfricanAmerican"            
+[13] "Income100K.150K"             "Income75K.100K"             
+[15] "Income50K.75K"               "Income35K.50K"              
+[17] "Income25K.35K"               "PovertyRate"                </code></pre>
+</div>
+</div>
+<ul>
+<li>In this lab assignment, you will start by looking closely at the data to understand it better. Then, you’ll use a multiple linear regression to make predictions. You’ll also check if the assumptions of this method hold true, look for data points that might be unusual, and figure out which factors are especially important for making predictions.</li>
+<li>There are 52 observations and 18 variables in the data. Several variables are expressed in percentage points as a fraction of the total population. Here is a snapshot of our data for reference:</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">State</th>
+<th style="text-align: right;">OwnComputer</th>
+<th style="text-align: right;">CommutePublicTransport</th>
+<th style="text-align: right;">TotalPopulation</th>
+<th style="text-align: right;">MedianAge</th>
+<th style="text-align: right;">WithCashAssistanceIncome</th>
+<th style="text-align: right;">MeanSocialSecurityIcnome</th>
+<th style="text-align: right;">SupplementarySecurityIncome</th>
+<th style="text-align: right;">WhiteOnly</th>
+<th style="text-align: right;">Latinos</th>
+<th style="text-align: right;">Asians</th>
+<th style="text-align: right;">AfricanAmerican</th>
+<th style="text-align: right;">Income100K.150K</th>
+<th style="text-align: right;">Income75K.100K</th>
+<th style="text-align: right;">Income50K.75K</th>
+<th style="text-align: right;">Income35K.50K</th>
+<th style="text-align: right;">Income25K.35K</th>
+<th style="text-align: right;">PovertyRate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Minnesota</td>
+<td style="text-align: right;">90.3</td>
+<td style="text-align: right;">198984.888</td>
+<td style="text-align: right;">5527358</td>
+<td style="text-align: right;">37.9</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">20192</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">80.3</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">17.2</td>
+<td style="text-align: right;">14.0</td>
+<td style="text-align: right;">18.0</td>
+<td style="text-align: right;">12.1</td>
+<td style="text-align: right;">8.2</td>
+<td style="text-align: right;">10.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mississippi</td>
+<td style="text-align: right;">81.5</td>
+<td style="text-align: right;">8966.286</td>
+<td style="text-align: right;">2988762</td>
+<td style="text-align: right;">37.2</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">17667</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: right;">56.8</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">38.4</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">11.2</td>
+<td style="text-align: right;">16.9</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">20.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missouri</td>
+<td style="text-align: right;">87.3</td>
+<td style="text-align: right;">85260.868</td>
+<td style="text-align: right;">6090062</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">19054</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">79.6</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">18.6</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">10.6</td>
+<td style="text-align: right;">14.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Montana</td>
+<td style="text-align: right;">87.3</td>
+<td style="text-align: right;">8333.856</td>
+<td style="text-align: right;">1041732</td>
+<td style="text-align: right;">39.8</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">18696</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">86.3</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">12.6</td>
+<td style="text-align: right;">12.2</td>
+<td style="text-align: right;">19.1</td>
+<td style="text-align: right;">14.4</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">13.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nebraska</td>
+<td style="text-align: right;">88.5</td>
+<td style="text-align: right;">13333.320</td>
+<td style="text-align: right;">1904760</td>
+<td style="text-align: right;">36.4</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">19673</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">79.4</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">15.1</td>
+<td style="text-align: right;">13.7</td>
+<td style="text-align: right;">19.3</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">11.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: right;">91.2</td>
+<td style="text-align: right;">99376.866</td>
+<td style="text-align: right;">2922849</td>
+<td style="text-align: right;">37.9</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">19141</td>
+<td style="text-align: right;">4.1</td>
+<td style="text-align: right;">49.9</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">10.1</td>
+<td style="text-align: right;">10.6</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">13.4</td>
+<td style="text-align: right;">19.1</td>
+<td style="text-align: right;">14.1</td>
+<td style="text-align: right;">10.1</td>
+<td style="text-align: right;">13.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><p>There are 18 variables in the dataset</p>
+<ol type="1">
+<li><p><strong>State</strong>: This variable represents the name of each state in the dataset.</p></li>
+<li><p><strong>OwnComputer</strong>: This variable represents the percentage of households in each state that own a computer, indicating the level of computer ownership.</p></li>
+<li><p><strong>CommutePublicTransport</strong>: This variable represents the percentage of people in each state who use public transportation as their primary means of commuting to work or other places.</p></li>
+<li><p><strong>TotalPopulation</strong>: This variable represents the total population of each state, indicating the number of people residing in that state.</p></li>
+<li><p><strong>MedianAge</strong>: This variable represents the median age of the population in each state, providing an insight into the state’s demographic age distribution.</p></li>
+<li><p><strong>WithCashAssistanceIncome</strong>: This variable represents the percentage of households or individuals in each state receiving cash assistance income, possibly from government programs.</p></li>
+<li><p><strong>MeanSocialSecurityIncome</strong>: This variable represents the average or mean amount of Social Security income received by individuals in each state.</p></li>
+<li><p><strong>SupplementarySecurityIncome</strong>: This variable represent the percentage of people in each state who receives supplementary security income related to social welfare programs.</p></li>
+<li><p><strong>WhiteOnly</strong>: This variable represents the percentage of people in each state identifying as White or Caucasian in terms of racial or ethnic background.</p></li>
+<li><p><strong>Latinos</strong>: This variable represents the percentage of people in each state identifying as Latino or Hispanic in terms of racial or ethnic background.</p></li>
+<li><p><strong>Asians</strong>: This variable represents the percentage of people in each state identifying as Asian in terms of racial or ethnic background.</p></li>
+<li><p><strong>AfricanAmerican</strong>: This variable represents the percentage of people in each state identifying as African American or Black in terms of racial or ethnic background.</p></li>
+<li><p><strong>Income100K.150K</strong>: This variable represents the percentage or number of households in each state with an annual income falling within the range of $100,000 to $150,000.</p></li>
+<li><p><strong>Income75K.100K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $75,000 to $100,000.</p></li>
+<li><p><strong>Income50K.75K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $50,000 to $75,000.</p></li>
+<li><p><strong>Income35K.50K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $35,000 to $50,000.</p></li>
+<li><p><strong>Income25K.35K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $25,000 to $35,000.</p></li>
+<li><p><strong>PovertyRate</strong>: This variable represents the poverty rate in each state, indicating the percentage of the population living below the poverty line or threshold.</p></li>
+</ol></li>
+<li><p>Our target variable is <code>commuters</code>, which you will calculate as <code>CommutePublicTransport</code> divided by <code>TotalPopulation</code>, representing the percentage of the state’s population that utilizes public transportation. Although it may not appear immediately appealing to analyze, in this lab assignment, we will try to uncover the determinants that impact our target variable.</p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 1: DATA SORTING
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Create a copy of <code>mydata</code> and call it <code>dataUS</code>.</p></li>
+<li><p>Create a new column in <code>dataUS</code> called <strong><code>commuters</code></strong> by using the following formula:</p>
+<p><code>commuters = 100*CommutePublicTransport / TotalPopulation.</code></p>
+<p>This new variable will help you determine the proportion of people who commute via public transport in relation to the total population.</p></li>
+<li><p>Finally, clean up the <strong><code>dataUS</code></strong> dataset by removing two variables:</p>
+<ul>
+<li><p><strong><code>CommutePublicTransport</code></strong></p></li>
+<li><p><strong><code>TotalPopulation</code></strong></p></li>
+</ul></li>
+<li><p>Identify the three states with the highest values of <code>commuters</code> and the three states with the lowest values of <code>commuters</code> within the dataset, <code>dataUS</code>. Make sure your code prints out these states below.</p></li>
+<li><p>Can you observe any common patterns or trends among these states? Please provide a brief summary below.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="your-code-for-task-1" class="level2">
+<h2 class="anchored" data-anchor-id="your-code-for-task-1">Your code for Task 1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of mydata and call it dataUS</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> mydata</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the commuters variable</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dataUS<span class="sc">$</span>commuters <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> dataUS<span class="sc">$</span>CommutePublicTransport <span class="sc">/</span> dataUS<span class="sc">$</span>TotalPopulation</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the CommutePublicTransport and TotalPopulation variables</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> dataUS[, <span class="sc">!</span>(<span class="fu">names</span>(dataUS) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CommutePublicTransport"</span>, <span class="st">"TotalPopulation"</span>))]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the three states with the highest values of commuters</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>top_states <span class="ot">&lt;-</span> dataUS[<span class="fu">order</span>(dataUS<span class="sc">$</span>commuters,<span class="at">decreasing =</span> <span class="cn">TRUE</span>), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">"State"</span>]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the three states with the lowest values of commuters</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>bottom_states <span class="ot">&lt;-</span> dataUS[<span class="fu">order</span>(dataUS<span class="sc">$</span>commuters), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">"State"</span>]</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Three states with the highest values of commuters:"</span>, top_states, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Three states with the highest values of commuters: District of Columbia New York New Jersey </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Three states with the lowest values of commuters:"</span>, bottom_states, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Three states with the lowest values of commuters: Mississippi Alabama Arkansas </code></pre>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 2: CORRELATION
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Your goal is to calculate the correlations between <code>commuters</code> and all variables but <code>State</code> in <code>dataUS</code>. Name your R object as <code>cor_with_commuters</code> which displays variable names under <code>Variable</code> column and correlation coefficients under <code>Correlation</code> column.</p></li>
+<li><p>Sort <code>Correlation</code> values in <code>cor_with_commuters</code> in descending order based on their absolute values.</p></li>
+<li><p>Generate a scatter plot where ‘commuters’ is placed on the y-axis, and the variable with the highest correlation coefficient (in absolute value) with ‘commuters’ is placed on the x-axis. Differentiate the data points using distinct colors depending on whether ‘OwnComputer’ is less than 88 or not. Don’t forget to label your axes for clarity.</p></li>
+<li><p>What observations or insights can you draw from this plot? Please describe any patterns or trends you notice and provide your interpretation of the relationship between commute time and income in this context</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="your-code-for-task-2" class="level2">
+<h2 class="anchored" data-anchor-id="your-code-for-task-2">Your code for Task 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please provide your code for Task 2 in this code chunk</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming that your data is in a data frame called dataUS</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming dataUS is your dataframe</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the 'State' column</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> <span class="fu">select</span>(dataUS, <span class="sc">-</span>State)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlations</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataUS, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe with correlations with 'commuters'</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>cor_with_commuters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Variable =</span> <span class="fu">row.names</span>(correlations), <span class="at">Correlation =</span> correlations[, <span class="st">"commuters"</span>])</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by absolute correlation values</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>cor_with_commuters <span class="ot">&lt;-</span> cor_with_commuters[<span class="fu">order</span>(<span class="fu">abs</span>(cor_with_commuters<span class="sc">$</span>Correlation), <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the variable with the highest absolute correlation</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>highest_corr_var <span class="ot">&lt;-</span> cor_with_commuters<span class="sc">$</span>Variable[<span class="dv">1</span>]</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the scatter plot</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataUS, <span class="fu">aes_string</span>(<span class="at">x =</span> highest_corr_var, <span class="at">y =</span> <span class="st">"commuters"</span>)) <span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> OwnComputer <span class="sc">&lt;</span> <span class="dv">88</span>)) <span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> highest_corr_var, <span class="at">y =</span> <span class="st">"Commuters"</span>) <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"OwnComputer &lt; 88"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Week-2-Assignment-POST_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 3: REGRESSION
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Create an R object named <code>model1</code> to store the linear regression output (<code>model1</code>) with the following predictors: <code>MedianAge</code>, <code>Income100K.150K</code>, <code>Income35K.50K</code>, and <code>PovertyRate</code> in <code>dataUS</code> dataset. This model aims to predict <code>commuters</code>.</p></li>
+<li><p>Provide a one-sentence interpretation for each coefficient estimate in <code>model1</code>, excluding the intercept.</p></li>
+<li><p>Create a scatterplot that displays the relationship between residuals and fitted values for ‘model1.’ Based on your visual inspection of the plot, identify and explain the number of potential outliers you observe. Ensure that your code generates and displays the scatterplot below.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="your-code-for-task-3" class="level2">
+<h2 class="anchored" data-anchor-id="your-code-for-task-3">Your code for Task 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please provide your code for Task 3 in this code chunk</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries if not already loaded</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggplot2") # Uncomment and run if not already installed</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named 'dataUS', replace with your actual dataset name</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the linear regression model with specified predictors</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(commuters <span class="sc">~</span> MedianAge <span class="sc">+</span> Income100K<span class="fl">.150</span>K <span class="sc">+</span> Income35K<span class="fl">.50</span>K <span class="sc">+</span> PovertyRate, <span class="at">data =</span> dataUS)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretation of coefficient estimates excluding the intercept</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>coef_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)<span class="sc">$</span>coefficients</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>interpretations <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MedianAge:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"MedianAge"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Income100K.150K:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"Income100K.150K"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Income35K.50K:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"Income35K.50K"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PovertyRate:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"PovertyRate"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print one-sentence interpretations</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>interpretations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "MedianAge: -0.8853 Income100K.150K: -4.5123 Income35K.50K: -6.2855 PovertyRate: -1.8438"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot of residuals vs. fitted values</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>residual_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Fitted =</span> <span class="fu">fitted</span>(model1), <span class="at">Residuals =</span> <span class="fu">residuals</span>(model1)), <span class="fu">aes</span>(<span class="at">x =</span> Fitted, <span class="at">y =</span> Residuals)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fitted Values"</span>, <span class="at">y =</span> <span class="st">"Residuals"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Residuals vs. Fitted Values"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scatterplot</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(residual_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Week-2-Assignment-POST_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 4: OUTLIER DETECTION
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Cook’s distance is a frequently employed metric for detecting influential data points that exert a significant influence on a regression model. In this lab assignment, utilize a Cook’s Distance threshold of 1 to pinpoint the row numbers of any outliers.</p></li>
+<li><p>Which States seem to be an outlier in <code>model1</code>?</p></li>
+<li><p>Remove the outlier states from your dataset and save your new dataset as <code>dataUS_removed</code>.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="your-code-for-task-4" class="level2">
+<h2 class="anchored" data-anchor-id="your-code-for-task-4">Your code for Task 4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please provide your code for Task 4 in this code chunk</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming model1 is your regression model and dataUS is your dataset</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Cook's Distance</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>cooks_dist <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(model1)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the outliers</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(cooks_dist)[cooks_dist <span class="sc">&gt;</span> <span class="dv">1</span>])</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the row numbers of the outliers</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(outliers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 29 38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the outliers</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dataUS_removed <span class="ot">&lt;-</span> dataUS[<span class="sc">-</span>outliers, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Task 5: MULTICOLLINEARITY CHECK
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Multicollinearity occurs when two or more independent variables in a regression model are highly correlated, which can result in unstable and unreliable estimates of the regression coefficients. We can check for multicollinearity by calculating the variance inflation factor (VIF). Any VIF value 10 or above can be considered as an <code>evidence of high multi-collinearity</code>.</p></li>
+<li><p>Create an R object called <code>model2</code> to store the linear regression results, using all predictors except <code>State</code> from the <code>dataUS_removed</code> dataset to predict <code>commuters</code>.</p></li>
+<li><p>Apply the <strong><code>vif()</code></strong> function in R to assess which variables in <code>model2</code> exhibit signs of multicollinearity. List the names of the variables that demonstrate multicollinearity.</p></li>
+<li><p>Next, create a new linear regression model named <code>model3</code> by removing the variables identified as “showing signs of multicollinearity”. Calculate and compare the Adjusted R-squared values for both <code>model2</code> and <code>model3</code>. Provide your comments and insights based on the comparison of these values</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="your-code-for-task-5" class="level2">
+<h2 class="anchored" data-anchor-id="your-code-for-task-5">Your code for Task 5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Please provide your code for Task 5 in this code chunk</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary library</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(commuters <span class="sc">~</span> ., <span class="at">data =</span> dataUS_removed)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate VIF</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model2)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print VIF values</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vif_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                OwnComputer                   MedianAge 
+                   7.225945                    4.095130 
+   WithCashAssistanceIncome    MeanSocialSecurityIcnome 
+                   2.343229                    2.508483 
+SupplementarySecurityIncome                   WhiteOnly 
+                   8.792192                    9.738408 
+                    Latinos                      Asians 
+                   1.597676                    3.827628 
+            AfricanAmerican             Income100K.150K 
+                   2.407940                   66.889630 
+             Income75K.100K               Income50K.75K 
+                  13.126870                   23.393135 
+              Income35K.50K               Income25K.35K 
+                  56.597910                   67.342550 
+                PovertyRate 
+                  37.430076 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify variables with VIF &gt; 10</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>high_vif <span class="ot">&lt;-</span> <span class="fu">names</span>(vif_values)[vif_values <span class="sc">&gt;</span> <span class="dv">10</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print variables with high multicollinearity</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(high_vif)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Income100K.150K" "Income75K.100K"  "Income50K.75K"   "Income35K.50K"  
+[5] "Income25K.35K"   "PovertyRate"    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model without multicollinear variables</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>model3_formula <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">"commuters ~ "</span>, <span class="fu">paste</span>(<span class="fu">setdiff</span>(<span class="fu">names</span>(dataUS_removed), high_vif), <span class="at">collapse =</span> <span class="st">" + "</span>)))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model3_formula, <span class="at">data =</span> dataUS_removed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in model.matrix.default(mt, mf, contrasts): the response appeared on
+the right-hand side and was dropped</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in model.matrix.default(mt, mf, contrasts): problem with term 10 in
+model.matrix: no columns are assigned</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Adjusted R-squared values</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Adjusted R-squared for model2: "</span>, <span class="fu">summary</span>(model2)<span class="sc">$</span>adj.r.squared, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted R-squared for model2:  0.3128017 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Adjusted R-squared for model3: "</span>, <span class="fu">summary</span>(model3)<span class="sc">$</span>adj.r.squared, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted R-squared for model3:  0.1155853 </code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

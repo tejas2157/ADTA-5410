@@ -1,0 +1,156 @@
+---
+title: "Linear regression"
+author: "Tejaskumar Patel"
+date: "2023-12-14"
+categories: [R, Regression, analysis]
+image: "image.jpg"
+---
+
+Hi, Let's run a regression.
+
+#### **Data Set Description**
+
+## **State-level Census data**
+
+We have state level census data on various socio-economic and demographic factors called **mydata**.
+
+```{r, echo=TRUE}
+
+mydata <-read.csv("D://ADTA 5410 DEPLOYMENT//Portfolio//my portfolio//ADTATEJAS//posts//my first post//my portfolio data.csv", head=T)
+
+names(mydata)
+
+```
+
+**Task 1:**
+
+In this task, I will start by looking closely at the data to understand it better. Then, I \'ll use a multiple linear regression to make predictions.
+
+There are 52 observations and 18 variables in the data.
+
+1\. **State**: This variable represents the name of each state in the dataset.
+
+2.**OwnComputer**: This variable represents the percentage of households in each state that own a computer, indicating the level of computer ownership.
+
+3. **CommutePublicTransport**: This variable represents the percentage of people in each state who use public transportation as their primary means of commuting to work or other places.
+
+4.**TotalPopulation**: This variable represents the total population of each state, indicating the number of people residing in that state.
+
+5.**MedianAge**: This variable represents the median age of the population in each state, providing an insight into the state\'s demographic age distribution.
+
+6.**WithCashAssistanceIncome**: This variable represents the percentage of households or individuals in each state receiving cash assistance income, possibly from government programs.
+
+7.**MeanSocialSecurityIncome**: This variable represents the average or mean amount of Social Security income received by individuals in each state.
+
+8\. **SupplementarySecurityIncome**: This variable represent the percentage of people in each state who receives supplementary security income related to social welfare programs.
+
+9\. **WhiteOnly**: This variable represents the percentage of people in each state identifying as White or Caucasian in terms of racial or ethnic background.
+
+10\. **Latinos**: This variable represents the percentage of people in each state identifying as Latino or Hispanic in terms of racial or ethnic background.
+
+11\. **Asians**: This variable represents the percentage of people in each state identifying as Asian in terms of racial or ethnic background.
+
+12\. **AfricanAmerican**: This variable represents the percentage of people in each state identifying as African American or Black in terms of racial or ethnic background.
+
+13\. **Income100K.150K**: This variable represents the percentage or number of households in each state with an annual income falling within the range of \$100,000 to \$150,000.
+
+14\. **Income75K.100K**: This variable represents the percentage of households in each state with an annual income falling within the range of \$75,000 to \$100,000.
+
+15\. **Income50K.75K**: This variable represents the percentage of households in each state with an annual income falling within the range of \$50,000 to \$75,000.
+
+16\. **Income35K.50K**: This variable represents the percentage of households in each state with an annual income falling within the range of \$35,000 to \$50,000.
+
+17\. **Income25K.35K**: This variable represents the percentage of households in each state with an annual income falling within the range of \$25,000 to \$35,000.
+
+18\. **PovertyRate**: This variable represents the poverty rate in each state, indicating the percentage of the population living below the poverty line or threshold.
+
+Here, my target variable is commuters
+
+```{r, echo=TRUE}
+
+# Create a copy of mydata and call it dataUS
+dataUS <- mydata
+
+# Calculate the commuters variable
+dataUS$commuters <- 100 * dataUS$CommutePublicTransport / dataUS$TotalPopulation
+
+# Remove the CommutePublicTransport and TotalPopulation variables
+dataUS <- dataUS[, !(names(dataUS) %in% c("CommutePublicTransport", "TotalPopulation"))]
+
+# Identify the three states with the highest values of commuters
+top_states <- dataUS[order(dataUS$commuters,decreasing = TRUE), ][1:3, "State"]
+
+# Identify the three states with the lowest values of commuters
+bottom_states <- dataUS[order(dataUS$commuters), ][1:3, "State"]
+
+# Print the results
+cat("Three states with the highest values of commuters:", top_states, "\n")
+```
+
+**Task 2:**
+
+Here, I will Generate a scatter plot.
+
+```{r, echo=TRUE}
+
+library(dplyr)
+library(ggplot2)
+
+# Remove the 'State' column
+dataUS <- select(dataUS, -State)
+
+# Calculate correlations
+correlations <- cor(dataUS, use = "complete.obs")
+
+# Create a dataframe with correlations with 'commuters'
+cor_with_commuters <- data.frame(Variable = row.names(correlations), Correlation = correlations[, "commuters"])
+
+# Sort by absolute correlation values
+cor_with_commuters <- cor_with_commuters[order(abs(cor_with_commuters$Correlation), decreasing = TRUE), ]
+
+# Get the variable with the highest absolute correlation
+highest_corr_var <- cor_with_commuters$Variable[1]
+
+# Generate the scatter plot
+ggplot(dataUS, aes_string(x = highest_corr_var, y = "commuters")) +
+  geom_point(aes(color = OwnComputer < 88)) +
+  labs(x = highest_corr_var, y = "Commuters") +
+  scale_color_discrete(name = "OwnComputer < 88")
+
+```
+
+**Task 3:**
+
+Here, I will Create a scatterplot that displays the relationship between residuals and fitted values.
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+
+# Assuming your dataset is named 'dataUS', replace with your actual dataset name
+# Fit the linear regression model with specified predictors
+model1 <- lm(commuters ~ MedianAge + Income100K.150K + Income35K.50K + PovertyRate, data = dataUS)
+
+# Interpretation of coefficient estimates excluding the intercept
+coef_summary <- summary(model1)$coefficients
+interpretations <- paste(
+  "MedianAge:", round(coef_summary["MedianAge", "Estimate"], 4),
+  "Income100K.150K:", round(coef_summary["Income100K.150K", "Estimate"], 4),
+  "Income35K.50K:", round(coef_summary["Income35K.50K", "Estimate"], 4),
+  "PovertyRate:", round(coef_summary["PovertyRate", "Estimate"], 4)
+)
+
+# Print one-sentence interpretations
+interpretations
+
+# Create a scatterplot of residuals vs. fitted values
+residual_plot <- ggplot(data = data.frame(Fitted = fitted(model1), Residuals = residuals(model1)), aes(x = Fitted, y = Residuals)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(x = "Fitted Values", y = "Residuals") +
+  ggtitle("Residuals vs. Fitted Values")
+
+# Display the scatterplot
+print(residual_plot)
+
+```
