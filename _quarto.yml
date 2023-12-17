@@ -9,7 +9,7 @@ website:
       - icon: github
         href: https://github.com/tejas2157/ADTA-5410.git
       - icon: file-person
-        file: Tejaskumar Patel Resume.docx
+        file: Tejaskumar Patel Resume.pdf
         
 format:
   html:

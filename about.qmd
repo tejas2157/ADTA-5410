@@ -6,7 +6,7 @@ about:
   links:
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/tejas2157/ADTA-5410.git
 ---
 
 Welcome to my blog on analytics!
