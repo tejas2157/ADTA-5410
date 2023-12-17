@@ -7,11 +7,15 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/tejas2157/ADTA-5410.git
+      - icon: file-person
+        file: Tejaskumar Patel Resume.docx
+        
 format:
   html:
     theme: cosmo
     css: styles.css
+    
 
 editor: visual
 

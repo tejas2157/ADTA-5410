@@ -121,7 +121,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Tejaskumar Patel</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/tejas2157/ADTA-5410.git" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../Tejaskumar Patel Resume.docx" rel="" target=""><i class="bi bi-file-person" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -176,156 +181,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Hi, Let’s run a regression.</p>
+<p>Hi, Let’s run a regression</p>
 <section id="data-set-description" class="level4">
 <h4 class="anchored" data-anchor-id="data-set-description"><strong>Data Set Description</strong></h4>
 </section>
-<section id="state-level-census-data" class="level2">
-<h2 class="anchored" data-anchor-id="state-level-census-data"><strong>State-level Census data</strong></h2>
-<p>We have state level census data on various socio-economic and demographic factors called&nbsp;<strong>mydata</strong>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"D://ADTA 5410 DEPLOYMENT//Portfolio//my portfolio//ADTATEJAS//posts//my first post//my portfolio data.csv"</span>, <span class="at">head=</span>T)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mydata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "State"                       "OwnComputer"                
- [3] "CommutePublicTransport"      "TotalPopulation"            
- [5] "MedianAge"                   "WithCashAssistanceIncome"   
- [7] "MeanSocialSecurityIcnome"    "SupplementarySecurityIncome"
- [9] "WhiteOnly"                   "Latinos"                    
-[11] "Asians"                      "AfricanAmerican"            
-[13] "Income100K.150K"             "Income75K.100K"             
-[15] "Income50K.75K"               "Income35K.50K"              
-[17] "Income25K.35K"               "PovertyRate"                </code></pre>
-</div>
-</div>
+<section id="boston-housing-data" class="level2">
+<h2 class="anchored" data-anchor-id="boston-housing-data"><strong>Boston housing data</strong></h2>
+<p>The dataset contains information about various factors affecting housing prices in Boston. The dataset includes 13 variables,which are,</p>
+<ol type="1">
+<li><strong>crim:</strong> per capita crime rate by town.</li>
+<li><strong>zn:</strong> proportion of residental land zoned for lots over 25,000 sq.ft.</li>
+<li><strong>indus:</strong> proportion of non-retail business acres per town.</li>
+<li><strong>chas:</strong> charls river dummy variable( 1 if tract bounds river; 0 otherwise</li>
+<li><strong>nox:</strong> Nitrogen oxides concentration(parts per 10 million)</li>
+<li><strong>rm:</strong> Average number of rooms per dwelling.</li>
+<li><strong>age:</strong> Proportion of owner-occupied units built prior to 1940.</li>
+<li><strong>dis:</strong> Weighted distances to five Boston employment centers.</li>
+<li><strong>rad:</strong> Index of accessibility to radial highways.</li>
+<li><strong>tax:</strong> Full-value property tax rate per $10,000.</li>
+<li><strong>ptratio:</strong> Pupil-teacher ratio by town.</li>
+<li><strong>lstat:</strong> Percentage of lower status of the population.</li>
+</ol>
+<p>The target variable is,</p>
+<ol type="1">
+<li><strong>medv:</strong> Median value of owner-occupied homes in $1000.00</li>
+</ol>
 <p><strong>Task 1:</strong></p>
-<p>In this task, I will start by looking closely at the data to understand it better. Then, I 'll use a multiple linear regression to make predictions.</p>
-<p>There are 52 observations and 18 variables in the data.</p>
-<p>1. <strong>State</strong>: This variable represents the name of each state in the dataset.</p>
-<p>2.<strong>OwnComputer</strong>: This variable represents the percentage of households in each state that own a computer, indicating the level of computer ownership.</p>
-<p>3.&nbsp;<strong>CommutePublicTransport</strong>: This variable represents the percentage of people in each state who use public transportation as their primary means of commuting to work or other places.</p>
-<p>4.<strong>TotalPopulation</strong>: This variable represents the total population of each state, indicating the number of people residing in that state.</p>
-<p>5.<strong>MedianAge</strong>: This variable represents the median age of the population in each state, providing an insight into the state's demographic age distribution.</p>
-<p>6.<strong>WithCashAssistanceIncome</strong>: This variable represents the percentage of households or individuals in each state receiving cash assistance income, possibly from government programs.</p>
-<p>7.<strong>MeanSocialSecurityIncome</strong>: This variable represents the average or mean amount of Social Security income received by individuals in each state.</p>
-<p>8. <strong>SupplementarySecurityIncome</strong>: This variable represent the percentage of people in each state who receives supplementary security income related to social welfare programs.</p>
-<p>9. <strong>WhiteOnly</strong>: This variable represents the percentage of people in each state identifying as White or Caucasian in terms of racial or ethnic background.</p>
-<p>10. <strong>Latinos</strong>: This variable represents the percentage of people in each state identifying as Latino or Hispanic in terms of racial or ethnic background.</p>
-<p>11. <strong>Asians</strong>: This variable represents the percentage of people in each state identifying as Asian in terms of racial or ethnic background.</p>
-<p>12. <strong>AfricanAmerican</strong>: This variable represents the percentage of people in each state identifying as African American or Black in terms of racial or ethnic background.</p>
-<p>13. <strong>Income100K.150K</strong>: This variable represents the percentage or number of households in each state with an annual income falling within the range of $100,000 to $150,000.</p>
-<p>14. <strong>Income75K.100K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $75,000 to $100,000.</p>
-<p>15. <strong>Income50K.75K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $50,000 to $75,000.</p>
-<p>16. <strong>Income35K.50K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $35,000 to $50,000.</p>
-<p>17. <strong>Income25K.35K</strong>: This variable represents the percentage of households in each state with an annual income falling within the range of $25,000 to $35,000.</p>
-<p>18. <strong>PovertyRate</strong>: This variable represents the poverty rate in each state, indicating the percentage of the population living below the poverty line or threshold.</p>
-<p>Here, my target variable is commuters</p>
+<p>In this task I will load the Boston housing dataset and named it as”mydata”. after that, I will calculate summary of the model to predict the “medv”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a copy of mydata and call it dataUS</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> mydata</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the commuters variable</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dataUS<span class="sc">$</span>commuters <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> dataUS<span class="sc">$</span>CommutePublicTransport <span class="sc">/</span> dataUS<span class="sc">$</span>TotalPopulation</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the CommutePublicTransport and TotalPopulation variables</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> dataUS[, <span class="sc">!</span>(<span class="fu">names</span>(dataUS) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CommutePublicTransport"</span>, <span class="st">"TotalPopulation"</span>))]</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the three states with the highest values of commuters</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>top_states <span class="ot">&lt;-</span> dataUS[<span class="fu">order</span>(dataUS<span class="sc">$</span>commuters,<span class="at">decreasing =</span> <span class="cn">TRUE</span>), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">"State"</span>]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the three states with the lowest values of commuters</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>bottom_states <span class="ot">&lt;-</span> dataUS[<span class="fu">order</span>(dataUS<span class="sc">$</span>commuters), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="st">"State"</span>]</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Three states with the highest values of commuters:"</span>, top_states, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> ISLR2<span class="sc">::</span>Boston</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(medv <span class="sc">~</span>., <span class="at">data=</span>mydata)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Three states with the highest values of commuters: District of Columbia New York New Jersey </code></pre>
-</div>
-</div>
-<p><strong>Task 2:</strong></p>
-<p>Here, I will Generate a scatter plot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
 <pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
+Call:
+lm(formula = medv ~ ., data = mydata)
 
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-15.1304  -2.7673  -0.5814   1.9414  26.2526 
 
-    intersect, setdiff, setequal, union</code></pre>
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  41.617270   4.936039   8.431 3.79e-16 ***
+crim         -0.121389   0.033000  -3.678 0.000261 ***
+zn            0.046963   0.013879   3.384 0.000772 ***
+indus         0.013468   0.062145   0.217 0.828520    
+chas          2.839993   0.870007   3.264 0.001173 ** 
+nox         -18.758022   3.851355  -4.870 1.50e-06 ***
+rm            3.658119   0.420246   8.705  &lt; 2e-16 ***
+age           0.003611   0.013329   0.271 0.786595    
+dis          -1.490754   0.201623  -7.394 6.17e-13 ***
+rad           0.289405   0.066908   4.325 1.84e-05 ***
+tax          -0.012682   0.003801  -3.337 0.000912 ***
+ptratio      -0.937533   0.132206  -7.091 4.63e-12 ***
+lstat        -0.552019   0.050659 -10.897  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.798 on 493 degrees of freedom
+Multiple R-squared:  0.7343,    Adjusted R-squared:  0.7278 
+F-statistic: 113.5 on 12 and 493 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the 'State' column</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>dataUS <span class="ot">&lt;-</span> <span class="fu">select</span>(dataUS, <span class="sc">-</span>State)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlations</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>correlations <span class="ot">&lt;-</span> <span class="fu">cor</span>(dataUS, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe with correlations with 'commuters'</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>cor_with_commuters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Variable =</span> <span class="fu">row.names</span>(correlations), <span class="at">Correlation =</span> correlations[, <span class="st">"commuters"</span>])</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by absolute correlation values</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>cor_with_commuters <span class="ot">&lt;-</span> cor_with_commuters[<span class="fu">order</span>(<span class="fu">abs</span>(cor_with_commuters<span class="sc">$</span>Correlation), <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the variable with the highest absolute correlation</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>highest_corr_var <span class="ot">&lt;-</span> cor_with_commuters<span class="sc">$</span>Variable[<span class="dv">1</span>]</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the scatter plot</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataUS, <span class="fu">aes_string</span>(<span class="at">x =</span> highest_corr_var, <span class="at">y =</span> <span class="st">"commuters"</span>)) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> OwnComputer <span class="sc">&lt;</span> <span class="dv">88</span>)) <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> highest_corr_var, <span class="at">y =</span> <span class="st">"Commuters"</span>) <span class="sc">+</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"OwnComputer &lt; 88"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
-ℹ Please use tidy evaluation idioms with `aes()`.
-ℹ See also `vignette("ggplot2-in-packages")` for more information.</code></pre>
 </div>
+<p><strong>Conclusion of the model summary:</strong></p>
+<p>I can say that the estimated median value of owner-occupied houses is 41.62 when all predictors are zero because the intercept is statistically significant.</p>
+<p>Here, R squared is 0.7343 that means the model shows about 73.43% of the variability in the response variable.</p>
+<p>Overall, The model has low P-values and high R-squared value which indicates that the model is statistically significant.</p>
+<p><strong>Task 2:</strong></p>
+<p>Here, I will Generate a scatter plot of Housing Price(rm) vs.&nbsp;Median Value(medv)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot for medv and crim</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mydata, <span class="fu">aes</span>(<span class="at">x =</span> rm, <span class="at">y =</span> medv)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter Plot of Housing Prices vs. Median Value in Boston"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"rm"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"medv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Conclusion :</strong></p>
+<p>There is positive correlation between average number of rooms (rm) and the median value of homes (medv).which indicate that as the average number of rooms increases, the median value of homes increase as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of housing prices</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Boston<span class="sc">$</span>medv, <span class="at">main=</span><span class="st">"Histogram of Median Home Values"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Median Value of Homes"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Task 3:</strong></p>
-<p>Here, I will Create a scatterplot that displays the relationship between residuals and fitted values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming your dataset is named 'dataUS', replace with your actual dataset name</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the linear regression model with specified predictors</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(commuters <span class="sc">~</span> MedianAge <span class="sc">+</span> Income100K<span class="fl">.150</span>K <span class="sc">+</span> Income35K<span class="fl">.50</span>K <span class="sc">+</span> PovertyRate, <span class="at">data =</span> dataUS)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretation of coefficient estimates excluding the intercept</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>coef_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model1)<span class="sc">$</span>coefficients</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>interpretations <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MedianAge:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"MedianAge"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Income100K.150K:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"Income100K.150K"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Income35K.50K:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"Income35K.50K"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>),</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PovertyRate:"</span>, <span class="fu">round</span>(coef_summary[<span class="st">"PovertyRate"</span>, <span class="st">"Estimate"</span>], <span class="dv">4</span>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print one-sentence interpretations</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>interpretations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "MedianAge: -0.8853 Income100K.150K: -4.5123 Income35K.50K: -6.2855 PovertyRate: -1.8438"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot of residuals vs. fitted values</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>residual_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Fitted =</span> <span class="fu">fitted</span>(model1), <span class="at">Residuals =</span> <span class="fu">residuals</span>(model1)), <span class="fu">aes</span>(<span class="at">x =</span> Fitted, <span class="at">y =</span> Residuals)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fitted Values"</span>, <span class="at">y =</span> <span class="st">"Residuals"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Residuals vs. Fitted Values"</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scatterplot</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(residual_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(medv <span class="sc">~</span> <span class="fu">cut</span>(rm, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">3</span>, <span class="dv">9</span>, <span class="at">by=</span><span class="dv">1</span>)), <span class="at">data=</span>Boston, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">"Boxplot of Median Home Values by Number of Rooms"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Number of Rooms"</span>, <span class="at">ylab=</span><span class="st">"Median Value of Homes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.92 loaded</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(mydata)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">"color"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
