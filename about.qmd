@@ -9,7 +9,7 @@ about:
       href: https://github.com/tejas2157/ADTA-5410.git
 ---
 
-Welcome to my blog on analytics!
+Welcome
 
 Hello there! 👋 I'm Tejaskumar Patel a passionate Data analyst based in Allen, TX. Welcome to my GitHub profile!
 
